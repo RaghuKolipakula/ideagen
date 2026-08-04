@@ -60,7 +60,7 @@ async function handleGenerate(request, env) {
 
   const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
-1. The idea MUST be a ridiculously simple web app that a solo founder can build in a couple of hours.
+1. The idea MUST be a ridiculously simple product (NOT necessarily AI or software—it can be ANY digital, physical, or service-based product) that a solo founder can create and start selling online in a couple of hours.
 2. It MUST target a hyper-local market (it works only when presented locally to local businesses or consumers) where there is absolutely NO local competition.
 3. Despite its simplicity, it MUST have the potential to make tons of money locally (e.g., high-ticket local B2B sales or high-volume local consumer usage).
 4. You MUST provide "live proof" that people are currently making money with this exact concept or a very similar one in other cities or regions (e.g., mention specific real-world examples or case studies).
