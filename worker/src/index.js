@@ -62,6 +62,7 @@ async function handleGenerate(request, env) {
 CRITICAL CONSTRAINTS:
 1. The idea must be in a niche that is NOT overly crowded or saturated.
 2. You MUST provide "live proof" that people are currently making money with this exact concept or a very similar one (e.g., mention specific real-world examples, competitor revenue, or case studies).
+3. The idea MUST have a clear, unfair advantage that allows it to beat the existing competition effortlessly (e.g., a drastically better pricing model, an un-ignorable distribution channel, or a 10x better user experience).
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
