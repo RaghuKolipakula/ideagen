@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Fake Product AI</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#1a1d24',
+            primary: '#6366f1',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased flex flex-col items-center min-h-screen">
+  
+  <nav class="w-full max-w-5xl mx-auto px-6 py-6 flex justify-between items-center relative z-10">
+    <a href="/" class="flex items-center gap-2 group">
+      <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-white transition-colors"></i>
+      <span class="font-bold text-lg text-gray-300 group-hover:text-white transition-colors">Back to Generator</span>
+    </a>
+    <span class="text-sm font-medium text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-lg">Admin Dashboard</span>
+  </nav>
+
+  <main class="w-full max-w-5xl mx-auto px-6 py-8 relative z-10 flex-grow flex flex-col gap-8">
+    
+    <!-- Header -->
+    <div>
+      <h1 class="text-4xl font-bold mb-2 text-white">AI Brain state</h1>
+      <p class="text-gray-400">View current preference weights learned from user feedback.</p>
+    </div>
+
+    <!-- Preferences Weights -->
+    <div class="glass-panel rounded-2xl p-6">
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-scale-balanced text-indigo-400"></i> Preference Weights
+      </h2>
+      <div id="weightsContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <!-- Weights injected here -->
+        <div class="animate-pulse flex space-x-4">
+          <div class="h-12 bg-gray-700 rounded w-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Products -->
+    <div class="glass-panel rounded-2xl p-6 flex-grow">
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-list text-purple-400"></i> Recent Generations
+      </h2>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 text-gray-400 text-sm">
+              <th class="pb-3 font-semibold w-1/4">Name</th>
+              <th class="pb-3 font-semibold w-2/4">Description</th>
+              <th class="pb-3 font-semibold text-right w-1/4">Date</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody" class="text-gray-300">
+            <!-- Rows injected here -->
+            <tr>
+              <td colspan="3" class="py-8 text-center text-gray-500">Loading products...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Simple admin logic inline for brevity or can be in app.js
+    const API_BASE = 'https://ideagen-api.kolipakula.workers.dev';
+
+    async function loadAdminData() {
+      try {
+        // Load Preferences
+        const prefsRes = await fetch(`${API_BASE}/api/preferences`);
+        const prefs = await prefsRes.json();
+        
+        const weightsContainer = document.getElementById('weightsContainer');
+        weightsContainer.innerHTML = '';
+        
+        if (prefs.length === 0) {
+          weightsContainer.innerHTML = '<p class="text-gray-500">No preferences found.</p>';
+        } else {
+          prefs.forEach(p => {
+            const isPositive = p.weight > 0;
+            const colorClass = isPositive ? 'text-green-400' : (p.weight < 0 ? 'text-red-400' : 'text-gray-400');
+            weightsContainer.innerHTML += `
+              <div class="bg-gray-800/50 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center relative overflow-hidden">
+                <span class="text-xs text-gray-400 uppercase tracking-wider mb-1">${p.category}</span>
+                <span class="text-3xl font-bold ${colorClass}">${p.weight}</span>
+              </div>
+            `;
+          });
+        }
+
+        // Load Products
+        const prodRes = await fetch(`${API_BASE}/api/products`);
+        const products = await prodRes.json();
+        
+        const tbody = document.getElementById('productsTableBody');
+        tbody.innerHTML = '';
+        
+        if (products.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="3" class="py-8 text-center text-gray-500">No products generated yet.</td></tr>';
+        } else {
+          products.forEach(p => {
+            const date = new Date(p.created_at).toLocaleString();
+            tbody.innerHTML += `
+              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <td class="py-4 pr-4 font-medium text-white">${p.name} <br/><span class="text-xs text-indigo-400 font-normal">${p.price}</span></td>
+                <td class="py-4 pr-4 text-sm text-gray-400 line-clamp-2">${p.description}</td>
+                <td class="py-4 text-right text-xs text-gray-500 whitespace-nowrap">${date}</td>
+              </tr>
+            `;
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('weightsContainer').innerHTML = `<p class="text-red-400">Failed to load preferences.</p>`;
+      }
+    }
+
+    // Run on load
+    if(window.location.pathname.includes('admin')) {
+      loadAdminData();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ideagen-api",
+	"main": "src/index.js",
+	"compatibility_date": "2024-03-20",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "ideagen-db",
+			"database_id": "ae948255-5f86-493d-94cd-21c2b0e01900",
+			"remote": true
+		}
+	],
+	"ai": {
+		"binding": "AI"
+	}
+}
