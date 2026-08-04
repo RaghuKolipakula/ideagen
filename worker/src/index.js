@@ -58,7 +58,7 @@ async function handleGenerate(request, env) {
     .map(p => `${p.category} (weight: ${p.weight})`)
     .join(', ');
 
-  const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
+  const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle. The idea MUST address a real, painful problem that people are actively willing to pay for. It MUST be something that a solo founder or small team can build a minimum viable product (MVP) for in a couple of hours to a couple of days.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
