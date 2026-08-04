@@ -10,6 +10,7 @@ const productName = document.getElementById('productName');
 const productPrice = document.getElementById('productPrice');
 const productDesc = document.getElementById('productDesc');
 const productFeatures = document.getElementById('productFeatures');
+const productCompetitors = document.getElementById('productCompetitors');
 const productImagePrompt = document.getElementById('productImagePrompt');
 
 const createImageBtn = document.getElementById('createImageBtn');
@@ -96,6 +97,22 @@ async function generateProduct() {
           </li>
         `;
       });
+    }
+
+    productCompetitors.innerHTML = '';
+    if(Array.isArray(data.competitors) && data.competitors.length > 0) {
+      data.competitors.forEach(comp => {
+        productCompetitors.innerHTML += `
+          <li class="flex items-start gap-3 text-gray-400 text-sm">
+            <i class="fa-solid fa-link text-indigo-400 mt-1"></i>
+            <span>${comp}</span>
+          </li>
+        `;
+      });
+    } else {
+      productCompetitors.innerHTML = `
+        <li class="text-gray-500 text-sm italic">No direct competitors identified, or they are too obscure.</li>
+      `;
     }
 
     // Switch UI

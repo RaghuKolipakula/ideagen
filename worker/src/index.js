@@ -70,6 +70,7 @@ Return ONLY a valid JSON object with the following keys:
 - description: A persuasive 2-3 sentence executive summary of the idea and why it's profitable
 - features: An array of 3-4 key success factors, data points, or competitive advantages
 - price: A string representing the estimated startup cost or potential monthly revenue (e.g., "$500 to start" or "$5k/mo revenue")
+- competitors: An array of 1-3 existing competitors, formatted as strings containing their name and website URL (e.g., "CompetitorName (www.example.com)").
 - category: A string representing the category of the idea. MUST be exactly one of: "SaaS", "E-commerce", "Agency", "Content Creator"
 - image_prompt: A prompt that could be used to generate a visualization of this business (e.g., people working, a storefront, or a digital app mockup).`;
 
@@ -109,15 +110,16 @@ Return ONLY a valid JSON object with the following keys:
 
   // 3. Save to D1
   const result = await env.DB.prepare(`
-    INSERT INTO products (name, description, features, price, image_prompt)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO products (name, description, features, price, image_prompt, competitors)
+    VALUES (?, ?, ?, ?, ?, ?)
     RETURNING id
   `).bind(
     product.name,
     product.description,
     JSON.stringify(product.features),
     product.price,
-    product.image_prompt
+    product.image_prompt,
+    product.competitors ? JSON.stringify(product.competitors) : null
   ).first();
 
   product.id = result.id;
@@ -136,7 +138,8 @@ async function handleGetProducts(env) {
   // Parse features back to array
   const products = results.map(p => ({
     ...p,
-    features: JSON.parse(p.features)
+    features: p.features ? JSON.parse(p.features) : [],
+    competitors: p.competitors ? JSON.parse(p.competitors) : []
   }));
 
   return new Response(JSON.stringify(products), {

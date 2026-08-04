@@ -8,6 +8,7 @@ CREATE TABLE products (
   description TEXT NOT NULL,
   features TEXT NOT NULL,
   price TEXT NOT NULL,
+  competitors TEXT,
   image_prompt TEXT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
