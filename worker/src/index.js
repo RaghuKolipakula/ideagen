@@ -58,11 +58,13 @@ async function handleGenerate(request, env) {
     .map(p => `${p.category} (weight: ${p.weight})`)
     .join(', ');
 
-  const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle. The idea MUST address a real, painful problem that people are actively willing to pay for. It MUST be something that a solo founder or small team can build a minimum viable product (MVP) for in a couple of hours to a couple of days.
+  const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
-1. The idea must be in a niche that is NOT overly crowded or saturated.
-2. You MUST provide "live proof" that people are currently making money with this exact concept or a very similar one (e.g., mention specific real-world examples, competitor revenue, or case studies).
-3. The idea MUST have a clear, unfair advantage that allows it to beat the existing competition effortlessly (e.g., a drastically better pricing model, an un-ignorable distribution channel, or a 10x better user experience).
+1. The idea MUST be a ridiculously simple web app that a solo founder can build in a couple of hours.
+2. It MUST target a hyper-local market (it works only when presented locally to local businesses or consumers) where there is absolutely NO local competition.
+3. Despite its simplicity, it MUST have the potential to make tons of money locally (e.g., high-ticket local B2B sales or high-volume local consumer usage).
+4. You MUST provide "live proof" that people are currently making money with this exact concept or a very similar one in other cities or regions (e.g., mention specific real-world examples or case studies).
+5. The idea MUST have a clear, unfair advantage that makes it an easy sell locally.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
