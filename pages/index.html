@@ -108,6 +108,19 @@
             <!-- Features injected here -->
           </ul>
 
+          <!-- Thumbs Up/Down for specific idea -->
+          <div class="pt-6 border-t border-white/10 flex items-center justify-between mb-8">
+            <span class="text-sm text-gray-400">Would you build this?</span>
+            <div class="flex gap-3">
+              <button class="feedback-btn btn-icon w-10 h-10 rounded-full border border-gray-600 text-gray-400 flex items-center justify-center hover:text-green-400 hover:border-green-400" data-rating="1">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </button>
+              <button class="feedback-btn btn-icon w-10 h-10 rounded-full border border-gray-600 text-gray-400 flex items-center justify-center hover:text-red-400 hover:border-red-400" data-rating="-1">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+              </button>
+            </div>
+          </div>
+
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="categoryOptions">
             <button class="category-feedback-btn p-4 rounded-xl border border-gray-700 bg-surface hover:bg-gray-700 transition-colors flex flex-col items-center gap-3 group" data-category="SaaS">
               <i class="fa-solid fa-cloud text-2xl text-gray-400 group-hover:text-indigo-400 transition-colors"></i>

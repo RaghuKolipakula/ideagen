@@ -23,6 +23,7 @@ const categoryFeedbackBtns = document.querySelectorAll('.category-feedback-btn')
 
 // State
 let currentProductId = null;
+let currentProductCategory = null;
 
 // Event Listeners
 if (generateBtn) {
@@ -77,6 +78,7 @@ async function generateProduct() {
 
     const data = await response.json();
     currentProductId = data.id;
+    currentProductCategory = data.category;
 
     // Populate UI
     productName.textContent = data.name;
@@ -160,23 +162,17 @@ async function handleFeedback(rating) {
   }
 
   try {
-    // For simplicity, we just send a random category or a hardcoded one to boost if upvoted.
-    // In a full app, we might extract the category from the product metadata or AI response.
-    // Here we'll just send 'tech' randomly 50% of the time, or 'lifestyle' to simulate learning.
-    const cats = ['tech', 'lifestyle', 'humor', 'luxury', 'quirky'];
-    const randomCat = cats[Math.floor(Math.random() * cats.length)];
-
     await fetch(`${API_BASE}/api/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         productId: currentProductId, 
         rating: parseInt(rating),
-        category: randomCat // Simulating category attribution
+        category: currentProductCategory // Actually boosting the category of this idea
       })
     });
 
-    showToast(isUpvote ? 'Thanks for the upvote! We\'ll make more like this.' : 'Got it. We\'ll avoid this style.');
+    showToast(isUpvote ? 'Thanks for the upvote! We\'ll prioritize this category.' : 'Got it. We\'ll deprioritize this category.');
   } catch (err) {
     console.error(err);
     showToast('Failed to submit feedback', true);

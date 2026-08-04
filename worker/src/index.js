@@ -69,6 +69,7 @@ Return ONLY a valid JSON object with the following keys:
 - description: A persuasive 2-3 sentence executive summary of the idea and why it's profitable
 - features: An array of 3-4 key success factors, data points, or competitive advantages
 - price: A string representing the estimated startup cost or potential monthly revenue (e.g., "$500 to start" or "$5k/mo revenue")
+- category: A string representing the category of the idea. MUST be exactly one of: "SaaS", "E-commerce", "Agency", "Content Creator"
 - image_prompt: A prompt that could be used to generate a visualization of this business (e.g., people working, a storefront, or a digital app mockup).`;
 
   // 2. Call Gemini API using fetch
