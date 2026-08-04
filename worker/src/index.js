@@ -65,6 +65,7 @@ CRITICAL CONSTRAINTS:
 3. Despite its simplicity, it MUST have the potential to make tons of money locally (e.g., high-ticket local B2B sales or high-volume local consumer usage).
 4. You MUST provide "live proof" that people are currently making money with this exact concept or a very similar one in other cities or regions (e.g., mention specific real-world examples or case studies).
 5. The idea MUST have a clear, unfair advantage that makes it an easy sell locally.
+6. ABSOLUTELY NO SaaS (Software as a Service) ideas. Do NOT generate any software subscriptions.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
@@ -73,7 +74,7 @@ Return ONLY a valid JSON object with the following keys:
 - features: An array of 3-4 key success factors, data points, or competitive advantages
 - price: A string representing the estimated startup cost or potential monthly revenue (e.g., "$500 to start" or "$5k/mo revenue")
 - competitors: An array of 1-3 existing competitors, formatted as strings containing their name and website URL (e.g., "CompetitorName (www.example.com)").
-- category: A string representing the category of the idea. MUST be exactly one of: "SaaS", "E-commerce", "Agency", "Content Creator"
+- category: A string representing the category of the idea. MUST be exactly one of: "Info Product", "E-commerce", "Agency", "Content Creator"
 - image_prompt: A prompt that could be used to generate a visualization of this business (e.g., people working, a storefront, or a digital app mockup).`;
 
   // 2. Call Gemini API using fetch

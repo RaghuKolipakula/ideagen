@@ -30,7 +30,7 @@ CREATE TABLE preferences (
 
 -- Insert some default preferences for the AI to start with
 INSERT INTO preferences (category, weight) VALUES
-('SaaS', 0),
+('Info Product', 0),
 ('E-commerce', 0),
 ('Agency', 0),
 ('Content Creator', 0);
