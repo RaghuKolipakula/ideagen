@@ -60,14 +60,12 @@ async function handleGenerate(request, env) {
 
   const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
-1. The idea MUST be exclusively a DIGITAL PRODUCT (e.g., templates, digital art, guides, digital assets, printables) that a solo founder can generate using AI and start selling online in a couple of hours.
-2. It MUST target a highly specific or hyper-local niche market where there is absolutely NO direct competition.
-3. Despite its simplicity, it MUST have the potential to make tons of money (e.g., high-ticket niche B2B sales or high-volume consumer usage).
-4. The idea MUST have a clear, unfair advantage that makes it an easy sell online.
-6. ABSOLUTELY NO SaaS (Software as a Service) ideas. Do NOT generate any software subscriptions.
-7. Do NOT rely on speculative insurance savings as a primary sales pitch.
-8. Avoid high-liability sectors like physical security, armed guarding, or structural safety consulting. Focus instead on operational efficiency, digital asset management, local compliance, or software-enabled workflows where failure does not result in catastrophic physical loss or litigation.
-9. Every idea must account for realistic customer acquisition friction and operational maintenance.
+1. NO STATIC CONTENT: The idea MUST NOT be a static directory, PDF guide, template bundle, or community forum. It cannot compete with free Facebook groups.
+2. SINGLE UTILITY: The product must solve exactly ONE acute logistical, financial, or workflow pain point. It must compute, automate, or execute a specific task (e.g., a single-purpose browser extension, a lightweight Next.js/Cloudflare web app, or a data-processing script).
+3. HIGH WILLINGNESS TO PAY: It must target a highly specific or hyper-local niche market with no direct competition, offering a B2B workflow that saves businesses money or a "Done-For-You" automation that saves affluent consumers hours of painful execution.
+4. 24-HOUR SMOKE TEST: The idea must be testable today. You must define a strategy to validate payment intent (e.g., a 'Fake Door' landing page with a Stripe checkout loop) before any heavy backend code is written.
+5. LOW LIABILITY: Avoid high-liability sectors (physical security, structural safety). Focus on operational efficiency, digital workflows, or data routing where failure does not result in catastrophic physical loss or litigation.
+6. Every idea must account for realistic customer acquisition friction and operational maintenance.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
@@ -76,7 +74,7 @@ Return ONLY a valid JSON object with the following keys:
 - features: An array of 3-4 key success factors, data points, or competitive advantages
 - price: A string representing the estimated startup cost or potential monthly revenue (e.g., "$500 to start" or "$5k/mo revenue")
 - competitors: An array of 1-3 existing competitors, formatted as strings containing their name and website URL (e.g., "CompetitorName (www.example.com)").
-- category: A string representing the category of the idea. MUST be exactly one of: "Info Product", "E-commerce", "Agency", "Content Creator"
+- category: A string representing the category of the idea. MUST be exactly one of: "Micro-Tool", "E-commerce", "Agency", "Content Creator"
 - image_prompt: A prompt that could be used to generate a visualization of this business (e.g., people working, a storefront, or a digital app mockup).`;
 
   // 2. Call Gemini API using fetch
