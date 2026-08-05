@@ -66,6 +66,7 @@ CRITICAL CONSTRAINTS:
 4. 24-HOUR SMOKE TEST: The idea must be testable today. You must define a strategy to validate payment intent (e.g., a 'Fake Door' landing page with a Stripe checkout loop) before any heavy backend code is written.
 5. LOW LIABILITY: Avoid high-liability sectors (physical security, structural safety). Focus on operational efficiency, digital workflows, or data routing where failure does not result in catastrophic physical loss or litigation.
 6. Every idea must account for realistic customer acquisition friction and operational maintenance.
+7. PAINKILLER, NOT VITAMIN: The idea MUST solve an agonizing, urgent "hair-on-fire" problem (a painkiller) rather than offering a nice-to-have improvement (a vitamin). The pain must be so acute that the customer is desperate to take a chance and pay for your solution immediately.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
