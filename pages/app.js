@@ -12,6 +12,7 @@ const productDesc = document.getElementById('productDesc');
 const productFeatures = document.getElementById('productFeatures');
 const productCompetitors = document.getElementById('productCompetitors');
 const productImagePrompt = document.getElementById('productImagePrompt');
+const copyIdeaBtn = document.getElementById('copyIdeaBtn');
 
 const createImageBtn = document.getElementById('createImageBtn');
 const productImage = document.getElementById('productImage');
@@ -30,8 +31,16 @@ let currentProductCategory = null;
 if (generateBtn) {
   generateBtn.addEventListener('click', generateProduct);
 }
+if (userPromptInput) {
+  userPromptInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') generateProduct();
+  });
+}
 if (createImageBtn) {
   createImageBtn.addEventListener('click', generateImage);
+}
+if (copyIdeaBtn) {
+  copyIdeaBtn.addEventListener('click', copyIdeaToClipboard);
 }
 
 feedbackBtns.forEach(btn => {
@@ -222,16 +231,48 @@ async function handleCategoryFeedback(category, btn) {
 
 function showToast(message, isError = false) {
   toastMsg.textContent = message;
-  toast.className = `fixed bottom-6 right-6 glass-panel px-6 py-3 rounded-lg flex items-center gap-3 transform transition-all duration-300 z-50 ${isError ? 'border-red-500/50' : 'border-green-500/50'}`;
+  toast.querySelector('i').className = isError 
+    ? 'fa-solid fa-circle-exclamation text-red-400'
+    : 'fa-solid fa-circle-check text-green-400';
   
-  const icon = toast.querySelector('i');
-  icon.className = `fa-solid ${isError ? 'fa-circle-exclamation text-red-400' : 'fa-circle-check text-green-400'}`;
-
-  // Show
-  toast.classList.remove('translate-y-20', 'opacity-0');
+  toast.classList.remove('opacity-0', 'translate-y-20');
   
-  // Hide after 3s
   setTimeout(() => {
-    toast.classList.add('translate-y-20', 'opacity-0');
+    toast.classList.add('opacity-0', 'translate-y-20');
   }, 3000);
+}
+
+// Copy to Clipboard
+function copyIdeaToClipboard() {
+  const name = productName.textContent;
+  const desc = productDesc.textContent;
+  const price = productPrice.textContent;
+  
+  let featuresText = "Key Features:\n";
+  Array.from(productFeatures.children).forEach(li => {
+    featuresText += `- ${li.textContent.trim()}\n`;
+  });
+
+  let compsText = "Existing Competition:\n";
+  Array.from(productCompetitors.children).forEach(li => {
+    compsText += `- ${li.textContent.trim()}\n`;
+  });
+
+  const fullText = `Business Idea: ${name} (${price})\n\nDescription: ${desc}\n\n${featuresText}\n${compsText}`;
+
+  navigator.clipboard.writeText(fullText).then(() => {
+    showToast('Idea copied to clipboard!');
+    const icon = copyIdeaBtn.querySelector('i');
+    icon.classList.replace('fa-regular', 'fa-solid');
+    icon.classList.replace('fa-copy', 'fa-check');
+    icon.classList.add('text-green-400');
+    setTimeout(() => {
+      icon.classList.replace('fa-solid', 'fa-regular');
+      icon.classList.replace('fa-check', 'fa-copy');
+      icon.classList.remove('text-green-400');
+    }, 2000);
+  }).catch(err => {
+    console.error('Could not copy text: ', err);
+    showToast('Failed to copy', true);
+  });
 }

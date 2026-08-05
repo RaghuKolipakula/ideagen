@@ -98,7 +98,12 @@
         <div class="w-full md:w-7/12 p-8 flex flex-col">
           <div class="flex justify-between items-start mb-2">
             <h2 id="productName" class="text-3xl font-bold text-white"></h2>
-            <span id="productPrice" class="text-xl font-medium text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-lg"></span>
+            <div class="flex items-center gap-3">
+              <span id="productPrice" class="text-xl font-medium text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-lg"></span>
+              <button id="copyIdeaBtn" class="p-2 text-gray-400 hover:text-white transition-colors" title="Copy Idea to Clipboard">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
           </div>
           
           <p id="productDesc" class="text-gray-400 mb-6 leading-relaxed"></p>
