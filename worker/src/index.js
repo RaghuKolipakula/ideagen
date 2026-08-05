@@ -60,10 +60,10 @@ async function handleGenerate(request, env) {
 
   const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
-1. The idea MUST be a ridiculously simple product (NOT necessarily AI or software—it can be ANY digital, physical, or service-based product) that a solo founder can create and start selling online in a couple of hours.
-2. It MUST target a hyper-local market (it works only when presented locally to local businesses or consumers) where there is absolutely NO local competition.
-3. Despite its simplicity, it MUST have the potential to make tons of money locally (e.g., high-ticket local B2B sales or high-volume local consumer usage).
-5. The idea MUST have a clear, unfair advantage that makes it an easy sell locally.
+1. The idea MUST be exclusively a DIGITAL PRODUCT (e.g., templates, digital art, guides, digital assets, printables) that a solo founder can generate using AI and start selling online in a couple of hours.
+2. It MUST target a highly specific or hyper-local niche market where there is absolutely NO direct competition.
+3. Despite its simplicity, it MUST have the potential to make tons of money (e.g., high-ticket niche B2B sales or high-volume consumer usage).
+4. The idea MUST have a clear, unfair advantage that makes it an easy sell online.
 6. ABSOLUTELY NO SaaS (Software as a Service) ideas. Do NOT generate any software subscriptions.
 7. Do NOT rely on speculative insurance savings as a primary sales pitch.
 8. Avoid high-liability sectors like physical security, armed guarding, or structural safety consulting. Focus instead on operational efficiency, digital asset management, local compliance, or software-enabled workflows where failure does not result in catastrophic physical loss or litigation.
