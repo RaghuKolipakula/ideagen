@@ -61,8 +61,8 @@ async function handleGenerate(request, env) {
   const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
 1. NO STATIC CONTENT: The idea MUST NOT be a static directory, PDF guide, template bundle, or community forum. It cannot compete with free Facebook groups.
-2. SINGLE UTILITY SHOPIFY APP: The product must solve exactly ONE acute logistical, financial, or workflow pain point exclusively for Shopify merchants. It must compute, automate, or execute a specific task as a single-purpose Shopify app.
-3. HIGH WILLINGNESS TO PAY: It must target a highly specific niche of e-commerce store owners with no direct competition in the Shopify App Store, offering a B2B workflow that saves merchants money or hours of painful execution.
+2. SINGLE UTILITY AMAZON TOOL: The product must solve exactly ONE acute logistical, financial, or workflow pain point exclusively for Amazon Sellers (FBA/FBM, KDP, etc.). It must compute, automate, or execute a specific task as a single-purpose software tool or app for Amazon merchants.
+3. HIGH WILLINGNESS TO PAY: It must target a highly specific niche of Amazon sellers with no direct competition in the Amazon Selling Partner Appstore or third-party tool spaces, offering a B2B workflow that saves Amazon merchants money or hours of painful execution.
 4. 24-HOUR SMOKE TEST: The idea must be testable today. You must define a strategy to validate payment intent (e.g., a 'Fake Door' landing page with a Stripe checkout loop) before any heavy backend code is written.
 5. LOW LIABILITY: Avoid high-liability sectors (physical security, structural safety). Focus on operational efficiency, digital workflows, or data routing where failure does not result in catastrophic physical loss or litigation.
 6. Every idea must account for realistic customer acquisition friction and operational maintenance.
