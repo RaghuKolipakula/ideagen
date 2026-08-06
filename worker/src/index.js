@@ -67,6 +67,7 @@ CRITICAL CONSTRAINTS:
 5. LOW LIABILITY: Avoid high-liability sectors (physical security, structural safety). Focus on operational efficiency, digital workflows, or data routing where failure does not result in catastrophic physical loss or litigation.
 6. ZERO MAINTENANCE & SELF-EVOLVING: Once built, the system must be highly automated and self-evolving (e.g., leveraging user-generated data, API-driven auto-updates, or AI-driven feedback loops). It must require near-zero ongoing manual operational maintenance from the solo developer.
 7. PAINKILLER, NOT VITAMIN: The idea MUST solve an agonizing, urgent "hair-on-fire" problem (a painkiller) rather than offering a nice-to-have improvement (a vitamin). The pain must be so acute that the customer is desperate to take a chance and pay for your solution immediately.
+8. NO SAAS: ABSOLUTELY NO SaaS (Software as a Service) ideas. Do NOT generate any software subscriptions. The product must be a one-time purchase, a downloadable script/asset, a pay-per-usage utility, or monetized in a way that avoids complex recurring billing management.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
