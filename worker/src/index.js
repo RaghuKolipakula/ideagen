@@ -58,26 +58,26 @@ async function handleGenerate(request, env) {
     .map(p => `${p.category} (weight: ${p.weight})`)
     .join(', ');
 
-  const systemInstruction = `You are an expert business analyst and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
+  const systemInstruction = `You are an expert product designer and startup consultant. Create a highly detailed, data-backed, and proven money-making business idea or side hustle.
 CRITICAL CONSTRAINTS:
-1. NO STATIC CONTENT: The idea MUST NOT be a static directory, PDF guide, template bundle, or community forum. It cannot compete with free Facebook groups.
-2. RIDICULOUSLY SIMPLE AMAZON TOOL: The product must solve exactly ONE acute pain point exclusively for Amazon Sellers (FBA/FBM, KDP, etc.). It must be so trivial to execute that it can be built in a single afternoon (e.g., a simple Chrome extension, a basic Google Sheets macro, or a 1-page web utility).
-3. PROVEN DEMAND + BETTER EXECUTION: The idea MUST be based on an existing tool ALREADY making money in the Amazon ecosystem. The core functionality MUST be ridiculously simple and 100% cloneable by an AI coding assistant like Gemini Antigravity in under an hour. You must take this basic concept and add one highly-visible tweak (better UI or one missing feature) to capture market share quickly.
-4. 24-HOUR SMOKE TEST: The idea must be testable today. You must define a strategy to validate payment intent (e.g., a 'Fake Door' landing page with a Stripe checkout loop) before any heavy backend code is written.
-5. LOW LIABILITY: Avoid high-liability sectors (physical security, structural safety). Focus on operational efficiency, digital workflows, or data routing where failure does not result in catastrophic physical loss or litigation.
-6. ZERO MAINTENANCE & SELF-EVOLVING: Once built, the system must be highly automated and self-evolving (e.g., leveraging user-generated data, API-driven auto-updates, or AI-driven feedback loops). It must require near-zero ongoing manual operational maintenance from the solo developer.
-7. PAINKILLER, NOT VITAMIN: The idea MUST solve an agonizing, urgent "hair-on-fire" problem (a painkiller) rather than offering a nice-to-have improvement (a vitamin). The pain must be so acute that the customer is desperate to take a chance and pay for your solution immediately.
-8. NO SAAS: ABSOLUTELY NO SaaS (Software as a Service) ideas. Do NOT generate any software subscriptions. The product must be a one-time purchase, a downloadable script/asset, a pay-per-usage utility, or monetized in a way that avoids complex recurring billing management.
+1. NO STATIC CONTENT: The idea MUST NOT be a static directory, PDF guide, template bundle, or community forum.
+2. ADDICTIVE SIMPLE DIGITAL PRODUCT: The product must be an addictive, ridiculously simple digital product or micro-tool (e.g., a viral web app, a simple hyper-casual game, a focused utility, or an interactive digital experience). It must be so trivial to execute that it can be built in a single afternoon.
+3. PROVEN DEMAND + BETTER EXECUTION: The idea MUST be based on an existing concept ALREADY making money or getting high engagement. The core functionality MUST be 100% cloneable by an AI coding assistant like Gemini Antigravity in under an hour. You must take this basic concept and add one highly-visible tweak (better UI, gamification, or a missing feature) to capture attention quickly.
+4. 24-HOUR SMOKE TEST: The idea must be testable today. You must define a strategy to validate payment intent or engagement (e.g., a viral loop or simple paywall) before heavy coding.
+5. LOW LIABILITY: Avoid high-liability sectors.
+6. ZERO MAINTENANCE & SELF-EVOLVING: Once built, the system must be highly automated and self-evolving. It must require near-zero ongoing manual operational maintenance.
+7. HIGH ENGAGEMENT: The idea MUST have a psychological hook that makes users want to come back repeatedly or share it with friends (gamification, curiosity gap, instant gratification).
+8. NO SAAS: ABSOLUTELY NO SaaS (Software as a Service) subscriptions. The product must be monetized via one-time purchase, in-app microtransactions, ads, or pay-per-usage.
 ${preferenceContext ? `The users currently prefer these industries/models: ${preferenceContext}. Try to lean into these areas.` : ''}
 ${userPrompt ? `CRITICAL: The user has requested a business idea based on this specific prompt: "${userPrompt}". You MUST base the idea entirely around this prompt.` : ''}
 Return ONLY a valid JSON object with the following keys:
 - name: A catchy business or service name
-- description: A persuasive 2-3 sentence executive summary of the idea and why it's profitable
-- features: An array of 3-4 key success factors, data points, or competitive advantages
+- description: A persuasive 2-3 sentence executive summary of the idea and why it's profitable/addictive
+- features: An array of 3-4 key success factors, psychological hooks, or competitive advantages
 - price: A string representing the estimated startup cost or potential monthly revenue (e.g., "$500 to start" or "$5k/mo revenue")
 - competitors: An array of 1-3 existing competitors, formatted as strings containing their name and website URL (e.g., "CompetitorName (www.example.com)").
 - category: A string representing the category of the idea. MUST be exactly one of: "Micro-Tool", "E-commerce", "Agency", "Content Creator"
-- image_prompt: A prompt that could be used to generate a visualization of this business (e.g., people working, a storefront, or a digital app mockup).`;
+- image_prompt: A prompt that could be used to generate a visualization of this product (e.g., an app UI mockup, a vibrant digital asset).`;
 
   // 2. Call Gemini API using fetch
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${env.GEMINI_API_KEY}`, {

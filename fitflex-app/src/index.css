@@ -1,0 +1,243 @@
+:root {
+  --bg-dark: #121212;
+  --bg-panel: #1e1e1e;
+  --text-light: #f3f4f6;
+  --text-muted: #9ca3af;
+  --accent: #8b5cf6;
+  --border: #374151;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.editor-panel {
+  width: 400px;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.preview-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(#374151 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-input {
+  background-color: #121212;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.theme-btn {
+  background-color: #121212;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.theme-btn:hover {
+  border-color: var(--text-muted);
+}
+
+.theme-btn.active {
+  border-color: var(--accent);
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.theme-btn.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.theme-btn.locked:hover {
+  border-color: var(--border);
+}
+
+.export-btn {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  transition: opacity 0.2s;
+}
+
+.export-btn:hover {
+  opacity: 0.9;
+}
+
+/* Card rendering wrapper */
+.card-wrapper {
+  width: 360px;
+  height: 640px; /* 9:16 aspect ratio */
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+}
+
+/* Cyberpunk Theme */
+.theme-cyberpunk {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #09090b 0%, #1e1b4b 100%);
+  color: #fff;
+  height: 100%;
+  padding: 32px;
+  position: relative;
+}
+.theme-cyberpunk::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,92,246,0.1) 2px, rgba(139,92,246,0.1) 4px);
+  pointer-events: none;
+}
+.cyber-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 0 0 10px #facc15, 0 0 20px #eab308;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.cyber-stat {
+  font-size: 1.5rem;
+  color: #a78bfa;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(139,92,246,0.3);
+  padding-bottom: 4px;
+}
+.cyber-val {
+  color: #22d3ee;
+  text-shadow: 0 0 5px #22d3ee;
+}
+.cyber-qr {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid #8b5cf6;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Retro Arcade Theme */
+.theme-retro {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+  padding: 32px;
+  border: 8px solid #ef4444;
+}
+.retro-title {
+  font-size: 2rem;
+  color: #ef4444;
+  margin-bottom: 32px;
+  line-height: 1.5;
+  text-align: center;
+}
+.retro-stat {
+  font-size: 1rem;
+  color: #10b981;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.retro-val {
+  color: #fcd34d;
+}
+.retro-qr {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #ef4444;
+}
